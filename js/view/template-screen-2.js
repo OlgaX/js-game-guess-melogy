@@ -1,8 +1,8 @@
-import templateBuilder from '../helpers/template-builder';
-import templateToggle from '../helpers/template-toggle';
-import templateScreen3 from './template-screen-3';
+import templateBuilder from './helpers/template-builder';
+import handlerShowNextScreen from './handler-show-next-screen';
 
-const template = `
+const templateScreen2 = (data, state) => {
+  const template = `
   <!-- Выбор исполнителя: уровень -->
   <section class="main main--level main--level-artist">
     <svg xmlns="http://www.w3.org/2000/svg" class="timer" viewBox="0 0 780 780">
@@ -24,42 +24,25 @@ const template = `
       <h2 class="title main-title">Кто исполняет эту песню?</h2>
       <div class="player-wrapper"></div>
       <form class="main-list">
-        <div class="main-answer-wrapper">
-          <input class="main-answer-r" type="radio" id="answer-1" name="answer" value="val-1" />
-          <label class="main-answer" for="answer-1">
-            <img class="main-answer-preview" src="">
-            Пелагея
+        ${data[state.curQuestion].variants.map((song) => `
+        <div class="js-show-next-screen main-answer-wrapper">
+          <input class="main-answer-r" type="radio" id="answer-${song.id}" name="answer" value="val-${song.id}" />
+          <label class="main-answer" for="answer-${song.id}">
+            <img class="main-answer-preview" src="./music/${song.img}">
+            ${song.artist}
           </label>
         </div>
-
-        <div class="main-answer-wrapper">
-          <input class="main-answer-r" type="radio" id="answer-2" name="answer" value="val-1" />
-          <label class="main-answer" for="answer-2">
-            <img class="main-answer-preview" src="">
-            Краснознаменная дивизия имени моей бабушки
-          </label>
-        </div>
-
-        <div class="main-answer-wrapper">
-          <input class="main-answer-r" type="radio" id="answer-2" name="answer" value="val-1" />
-          <label class="main-answer" for="answer-2">
-            <img class="main-answer-preview" src="">
-            Lorde
-          </label>
-        </div>
+      `).join(``)}
       </form>
     </div>
   </section>
 `;
 
-const templateScreen2 = templateBuilder(template);
+  const templateScreen = templateBuilder(template);
 
-document.addEventListener(`click`, (e) => {
-  e.preventDefault();
-  const target = e.target;
-  if (target.closest(`.main-answer`)) {
-    templateToggle(templateScreen3);
-  }
-});
+  handlerShowNextScreen(data, state, templateScreen);
+
+  return templateScreen;
+};
 
 export default templateScreen2;

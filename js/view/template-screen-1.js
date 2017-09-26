@@ -1,12 +1,24 @@
-import templateBuilder from '../helpers/template-builder';
-import templateToggle from '../helpers/template-toggle';
-import templateScreen2 from './template-screen-2';
+import dataQuestionsGenerator from '../data/data-questions-generator';
+import templateBuilder from './helpers/template-builder';
+import templateLogo from './includes/template-logo';
+import handlerShowNextScreen from './handler-show-next-screen';
 
-const template = `
+const templateScreen1 = () => {
+
+  const state = {
+    errors: 0,
+    time: 120,
+    score: 0,
+    curQuestion: 0
+  };
+
+  const data = dataQuestionsGenerator();
+
+  const template = `
   <!-- Приветствие -->
   <section class="main main--welcome">
-    <section class="logo" title="Угадай мелодию"><h1>Угадай мелодию</h1></section>
-    <button class="main-play">Начать игру</button>
+    ${templateLogo}
+    <button class="js-show-next-screen main-play">Начать игру</button>
     <h2 class="title main-title">Правила игры</h2>
     <p class="text main-text">
       Правила просты&nbsp;— за&nbsp;2 минуты дать
@@ -16,15 +28,11 @@ const template = `
   </section>
 `;
 
-const templateScreen1 = templateBuilder(template);
+  const templateScreen = templateBuilder(template);
 
-document.addEventListener(`click`, (e) => {
-  e.preventDefault();
-  const target = e.target;
+  handlerShowNextScreen(data, state, templateScreen);
 
-  if (target.closest(`.main-play`)) {
-    templateToggle(templateScreen2);
-  }
-});
+  return templateScreen;
+};
 
 export default templateScreen1;
