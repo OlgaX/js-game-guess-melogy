@@ -1,8 +1,8 @@
-import templateBuilder from './helpers/template-builder';
+import templateBuilder from '../helpers/template-builder';
 import templateLogo from './includes/template-logo';
 import handlerShowNextScreen from './handler-show-next-screen';
 
-const templateScreen5 = (data, state) => {
+const templateScreen5 = () => {
 
   const template = `
   <!-- Неудачный результат игры -->
@@ -16,7 +16,7 @@ const templateScreen5 = (data, state) => {
 
   const templateScreen = templateBuilder(template);
 
-  handlerShowNextScreen(data, state, templateScreen);
+  handlerShowNextScreen(templateScreen);
 
   return templateScreen;
 };

@@ -1,4 +1,5 @@
 import dataSongs from './data-songs';
+import templateNames from '../helpers/template-names';
 
 function isNumeric(n) {
   return !isNaN(parseFloat(n)) && isFinite(n);
@@ -12,9 +13,19 @@ function compareRandom(a, b) {
   return Math.random() - 0.5;
 }
 
+function CustomException(value, message) {
+  this.value = value;
+  this.message = message;
+  this.toString = () => {
+    return `${this.value} => ${this.message}`;
+  };
+}
+
 const dataQuestionsGenerator = (totalQuestions = 10) => {
-  if (!isNumeric(totalQuestions) || totalQuestions < 1) {
-    return false;
+  const maxQuestions = 10;
+
+  if (!isNumeric(totalQuestions) || totalQuestions < 1 || totalQuestions > maxQuestions) {
+    throw new CustomException(totalQuestions, `is not numeric`);
   }
 
   let dataQuestions = [];
@@ -47,7 +58,7 @@ const dataQuestionsGenerator = (totalQuestions = 10) => {
       }
 
       dataQuestions.push({
-        questionType: `artist`,
+        questionType: templateNames.ARTIST,
         answer: songs[0],
         variants: songs.sort(compareRandom)
       });
@@ -68,7 +79,7 @@ const dataQuestionsGenerator = (totalQuestions = 10) => {
       }
 
       dataQuestions.push({
-        questionType: `genre`,
+        questionType: templateNames.GENRE,
         answer: songs.filter((song) => song.genre === songs[0].genre),
         variants: songs.sort(compareRandom)
       });

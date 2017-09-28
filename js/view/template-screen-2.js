@@ -1,7 +1,7 @@
-import templateBuilder from './helpers/template-builder';
+import templateBuilder from '../helpers/template-builder';
 import handlerShowNextScreen from './handler-show-next-screen';
 
-const templateScreen2 = (data, state) => {
+const templateScreen2 = (data) => {
   const template = `
   <!-- Выбор исполнителя: уровень -->
   <section class="main main--level main--level-artist">
@@ -24,7 +24,7 @@ const templateScreen2 = (data, state) => {
       <h2 class="title main-title">Кто исполняет эту песню?</h2>
       <div class="player-wrapper"></div>
       <form class="main-list">
-        ${data[state.curQuestion].variants.map((song) => `
+        ${data.variants.map((song) => `
         <div class="js-show-next-screen main-answer-wrapper">
           <input class="main-answer-r" type="radio" id="answer-${song.id}" name="answer" value="val-${song.id}" />
           <label class="main-answer" for="answer-${song.id}">
@@ -40,7 +40,7 @@ const templateScreen2 = (data, state) => {
 
   const templateScreen = templateBuilder(template);
 
-  handlerShowNextScreen(data, state, templateScreen);
+  handlerShowNextScreen(templateScreen);
 
   return templateScreen;
 };

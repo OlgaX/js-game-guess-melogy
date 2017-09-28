@@ -1,19 +1,8 @@
-import dataQuestionsGenerator from '../data/data-questions-generator';
-import templateBuilder from './helpers/template-builder';
+import templateBuilder from '../helpers/template-builder';
 import templateLogo from './includes/template-logo';
 import handlerShowNextScreen from './handler-show-next-screen';
 
 const templateScreen1 = () => {
-
-  const state = {
-    errors: 0,
-    time: 120,
-    score: 0,
-    curQuestion: 0
-  };
-
-  const data = dataQuestionsGenerator();
-
   const template = `
   <!-- Приветствие -->
   <section class="main main--welcome">
@@ -30,7 +19,7 @@ const templateScreen1 = () => {
 
   const templateScreen = templateBuilder(template);
 
-  handlerShowNextScreen(data, state, templateScreen);
+  handlerShowNextScreen(templateScreen);
 
   return templateScreen;
 };
