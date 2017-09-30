@@ -1,5 +1,5 @@
 import dataQuestionsGenerator from './data-questions-generator';
-import templateNames from '../helpers/template-names';
+import screen from '../helpers/screens';
 
 const _generatedData = dataQuestionsGenerator();
 
@@ -38,9 +38,9 @@ const dataGame = {
       const rand = Math.random();
 
       if (rand > 0.5) {
-        nextScreenData.screen = templateNames.RESULTS;
+        nextScreenData.screen = screen.GAME_RESULTS;
       } else {
-        nextScreenData.screen = templateNames.END;
+        nextScreenData.screen = screen.GAME_OVER;
       }
 
     }

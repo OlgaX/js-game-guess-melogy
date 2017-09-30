@@ -1,5 +1,5 @@
 import dataSongs from './data-songs';
-import templateNames from '../helpers/template-names';
+import screen from '../helpers/screens';
 
 function isNumeric(n) {
   return !isNaN(parseFloat(n)) && isFinite(n);
@@ -58,7 +58,7 @@ const dataQuestionsGenerator = (totalQuestions = 10) => {
       }
 
       dataQuestions.push({
-        questionType: templateNames.ARTIST,
+        questionType: screen.GAME_ARTIST,
         answer: songs[0],
         variants: songs.sort(compareRandom)
       });
@@ -79,7 +79,7 @@ const dataQuestionsGenerator = (totalQuestions = 10) => {
       }
 
       dataQuestions.push({
-        questionType: templateNames.GENRE,
+        questionType: screen.GAME_GENRE,
         answer: songs.filter((song) => song.genre === songs[0].genre),
         variants: songs.sort(compareRandom)
       });

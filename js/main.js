@@ -1,4 +1,4 @@
-import templateToggle from './helpers/template-toggle';
-import templateScreen1 from './view/template-screen-1';
+import WelcomeController from './game/welcome.controller';
 
-templateToggle(templateScreen1());
+const welcome = new WelcomeController();
+welcome.init();
