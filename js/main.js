@@ -1,4 +1,3 @@
-import WelcomeController from './game/welcome.controller';
+import App from './game/app';
 
-const welcome = new WelcomeController();
-welcome.init();
+App.init();

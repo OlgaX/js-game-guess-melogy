@@ -59,7 +59,8 @@ const dataQuestionsGenerator = (totalQuestions = 10) => {
 
       dataQuestions.push({
         questionType: screen.GAME_ARTIST,
-        answer: songs[0],
+        src: songs[0],
+        answer: [songs[0].id],
         variants: songs.sort(compareRandom)
       });
     } else {
@@ -78,9 +79,12 @@ const dataQuestionsGenerator = (totalQuestions = 10) => {
         }
       }
 
+      const answer = songs.filter((song) => song.genre === songs[0].genre);
+
       dataQuestions.push({
         questionType: screen.GAME_GENRE,
-        answer: songs.filter((song) => song.genre === songs[0].genre),
+        genre: songs[0].genre,
+        answer: answer.map((item) => item.id),
         variants: songs.sort(compareRandom)
       });
     }

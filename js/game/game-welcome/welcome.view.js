@@ -1,7 +1,7 @@
-import AbstractView from './abstract.view';
-import templateLogo from './includes/template-logo';
+import AbstractView from '../abstract.view';
+import templateLogo from '../includes/template-logo';
 
-class WelcomeView extends AbstractView {
+export default class WelcomeView extends AbstractView {
   get template() {
     return `
     <!-- Приветствие -->
@@ -32,5 +32,3 @@ class WelcomeView extends AbstractView {
 
   }
 }
-
-export default new WelcomeView();

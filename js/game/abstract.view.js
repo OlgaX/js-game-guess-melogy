@@ -19,6 +19,9 @@ export default class AbstractView {
 
   templateToggle(selector = `.main`) {
     const output = document.querySelector(selector);
+    if (!output) {
+      return false;
+    }
     output.innerHTML = ``;
     return output.appendChild(this.element);
   }
