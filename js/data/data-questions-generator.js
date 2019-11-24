@@ -2,7 +2,7 @@ import dataSongs from './data-songs';
 import screen from '../helpers/screens';
 
 function isNumeric(n) {
-  return !isNaN(parseFloat(n)) && isFinite(n);
+  return !Number.isNaN(n) && Number.isFinite(n) && Number.isSafeInteger(n);
 }
 
 function getRandomInt(min, max) {
